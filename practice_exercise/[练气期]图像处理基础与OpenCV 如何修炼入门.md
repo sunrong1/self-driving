@@ -2,7 +2,7 @@
 
 ## 概述-元认知
 
-### 练气期,我门需要掌握哪些知识?
+### 练气期,我们需要掌握哪些图像处理知识?
 
 掌握Opencv和图像处理的基础知识，并进行实践操作，具体包含：
 1. 为什么选择Opencv，Opencv是什么？
@@ -10,6 +10,8 @@
 3. 图像的基本运算如何进行？
 4. 色彩空间的类型转换如何进行
 5. 图像的几何变换是什么？怎么操作？
+
+本文讲解1,2 部分
 
 ### 人类与图像的认知
 
@@ -64,7 +66,7 @@ Opencv贡献库，opencv_contrib库，由社区开发和维护，功能更全面
   
 - 颜色空间
 
-  颜色空间，又成为色彩空间、彩色空间、彩色模型、色彩模型等。包含彩色空间包含：RBG、Gray、HSV、XYZ色彩空间、HLS色彩空间等等，每种色彩空间都又自己擅长处理的领域，需要用到的时候转换即可。
+  颜色空间，又成为色彩空间、彩色空间、彩色模型、色彩模型等。包含彩色空间包含：RGB、Gray、HSV、XYZ色彩空间、HLS色彩空间等等，每种色彩空间都又自己擅长处理的领域，需要用到的时候转换即可。
 
 - 通道 channel
 
@@ -229,7 +231,7 @@ plt.imshow(cv2.cvtColor(frame,cv2.COLOR_BGR2RGB))
 ```
 
 ![png](image/output_22_1.png)
-  
+
 
 ```python
 print(frame.shape)
@@ -245,3 +247,13 @@ cap.release()
 1. 李立宗 《Opencv 轻松入门：面向Python》
 2. 言有三，白身境 入门
 
+### Dave的专栏
+
+有疑问或者不对的地方，欢迎道友讨论交流，前辈传授经验。
+
+
+
+- Dave知乎专栏：[自动驾驶之计算机视觉方向化神级修炼](https://www.zhihu.com/column/c_1407110076645273600)
+- [Dave专栏Github](https://github.com/sunrong1/self-driving)
+
+![计算机视觉修仙](https://p1.pstatp.com/origin/feff0001d1a38c91b8b7)
