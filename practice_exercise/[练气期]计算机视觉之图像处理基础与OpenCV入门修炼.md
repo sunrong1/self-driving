@@ -1,17 +1,31 @@
-# [练气期]图像处理基础与OpenCV 如何修炼入门？
+# [练气期]计算机视觉之图像处理基础与OpenCV入门修炼
 
 ## 概述-元认知
 
 ### 练气期,我们需要掌握哪些图像处理知识?
 
-掌握Opencv和图像处理的基础知识，并进行实践操作，具体包含：
-1. 为什么选择Opencv，Opencv是什么？
+掌握OpenCV和图像处理的基础知识，并进行实践操作，具体包含：
+1. 为什么选择OpenCV，OpenCV是什么？
 2. 图像的基本概念是什么？
 3. 图像的基本运算如何进行？
 4. 色彩空间的类型转换如何进行
 5. 图像的几何变换是什么？怎么操作？
 
-本文讲解1,2 部分
+本文讲解1,2 部分，图像处理工具OpenCV的介绍和使用，图像的读写操作方法；图像的基本概念
+
+#### 总体路线
+
+我的知乎专栏：[自动驾驶之计算机视觉方向化神级修炼](https://www.zhihu.com/column/c_1407110076645273600)，可以看到整体的完整版本。
+
+> 凡人修仙之练气期：
+>
+> 熟悉计算机视觉的基本概念，理解和使用常用的图像处理的方法；
+> 自动驾驶的行业基本知识，自动驾驶行业基本组成、概念；
+> 熟悉几种常用的传统机器学习方法，对深度学习的基本概念有了解；
+> 有一定的数学基础，较好的编程基础，掌握常用的数据结构和算法（身体条件好）；
+> 有基本秘籍在手，开始进行前几层的修炼，对修炼有了入门的认识。
+>
+> 对应公司职级：助理工程师 阿里 P3/P4，华为13/14
 
 ### 人类与图像的认知
 
@@ -21,7 +35,7 @@
 
 ## 环境安装与准备
 
-opencv 在python环境下安装非常简单，一条命令即可:```pip install opencv-python ```。本文使用的是最新的python 3.8和Opencv 4。此外还需要最基本的科学计算包numpy，最常用的2D图像绘制包；
+OpenCV 在python环境下安装非常简单，一条命令即可:```pip install opencv-python ```。本文使用的是最新的python 3.8和OpenCV 4。此外还需要最基本的科学计算包numpy，最常用的2D图像绘制包；
 
 开发环境：notebook中，ipynb文件
 
@@ -42,17 +56,17 @@ import matplotlib as plot
 
 ## 基本概念
 
-### 为什么选择Opencv，Opencv是什么？
+### 为什么选择OpenCV，OpenCV是什么？
 
 - why和what
 
 OpenCV是一款非常优秀的开源计算机视觉库，是由Intel公司团队开发的，功能强大，并且可以在不同操作系统上运行，接口简洁高效，目前维护团队也依然活跃开发，他的底层是用C++/C来写的，和其他语言的接口也同样丰富。
 
-opencv主要包含两个库：
+OpenCV主要包含两个库：
 
-Opencv主库，最常使用的，由Opencv的核心团队开发
+OpenCV主库，最常使用的，由OpenCV的核心团队开发
 
-Opencv贡献库，opencv_contrib库，由社区开发和维护，功能更全面，但是不是全部都是开源的。
+OpenCV贡献库，OpenCV_contrib库，由社区开发和维护，功能更全面，但是不是全部都是开源的。
 
 ### 图像的基本概念
 
@@ -78,11 +92,13 @@ Opencv贡献库，opencv_contrib库，由社区开发和维护，功能更全面
 
 
 
-## opencv 与python图像处理基础
+## OpenCV 与python图像处理基础
 
-OPencv的API使用，请参考[Opencv 官方手册](https://docs.opencv.org/4.5.3)
+OpenCV的API使用，请参考[OpenCV 官方手册](https://docs.opencv.org/4.5.3)
 
 ### 图像读写
+
+基本上由以下三种读取图像的方法。
 
 #### 从图片中读取图像
 
@@ -120,15 +136,19 @@ for i in range(3):
     print("item data detail:",img.item(0,0,i))
 ```
 
-    shape: (722, 726, 3)
-    size: 1572516
-    data type: uint8
-    array data detail: 213
-    item data detail: 213
-    array data detail: 137
-    item data detail: 137
-    array data detail: 121
-    item data detail: 121
+返回：
+
+```python
+shape: (722, 726, 3)
+size: 1572516
+data type: uint8
+array data detail: 213
+item data detail: 213
+array data detail: 137
+item data detail: 137
+array data detail: 121
+item data detail: 121
+```
 
 画图工具，取到的第一个点的像素信息：
 
@@ -171,8 +191,10 @@ cv2.imwrite("lena_gray.jpg",img_gray)
 #plt.savefig("plt_lena_fig.jpg")
 ```
 
-    opencv First gray Data: 158
-    Calculate First Gray Data: 157.9
+```python
+opencv First gray Data: 158
+Calculate First Gray Data: 157.9
+```
 
 ![png](image/output_18_1.png)
     
@@ -212,7 +234,6 @@ plt.imshow(img_arr)
       [  0   0 255]
       [  0   0 255]]]
 
-
 ![png](image/output_20_2.png)
     
 
@@ -240,7 +261,18 @@ cap.release()
 
     (360, 640, 3)
 
+### 感兴趣区域 ROI
 
+```python
+img_bgr = cv2.imread("./week7_210617/lena.jpg")
+img = cv2.cvtColor(img_bgr,cv2.COLOR_BGR2RGB)
+# ROI感兴趣区域
+roi = img[250:550,250:550]
+print(roi.shape)
+plt.imshow(roi)
+```
+
+![image-20210821214401881](image/image-20210821214401881.png)
 
 ## 参考文献
 
@@ -249,7 +281,7 @@ cap.release()
 
 ### Dave的专栏
 
-有疑问或者不对的地方，欢迎道友讨论交流，前辈传授经验。
+有疑问的地方，欢迎道友讨论交流，前辈传授经验。
 
 
 
